@@ -1,13 +1,13 @@
-import { AuthRouter } from './Auth'
+import { ChatRouter } from './Chat'
 
 const Routes = [
-    { path: '/auth', router: AuthRouter }
+    { path: '/chat', router: ChatRouter }
 ]
 
 Routes.init = (app) => {
     try {
         Routes.forEach(route => {
-			app.use(['/', route.path].join(''), route.router)
+			app.use(['/dc', route.path].join(''), route.router)
 		})
         app.get('/health-check', (req, res) => res.send('working'))
     } catch (error) {

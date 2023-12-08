@@ -3,28 +3,16 @@ import { createClient } from 'redis'
 import { MONGOOSE, REDIS } from '../config'
 import { Log } from '../libs'
 
-export const redisClient = createClient({
-	port: REDIS.PORT,
-	host: REDIS.HOST,
-	password: REDIS.PASSWORD,
-	tls: {}
-})
+// export const redisClient = createClient({
+// 	port: REDIS.PORT,
+// 	host: REDIS.HOST,
+// 	password: REDIS.PASSWORD,
+// 	tls: {}
+// })
 
 export const dbInit = () => {
 	try {
-		const authstr =
-			MONGOOSE.MONGO_USERNAME && MONGOOSE.MONGO_PASSWORD
-				? `${encodeURIComponent(MONGOOSE.MONGO_USERNAME)}:${encodeURIComponent(MONGOOSE.MONGO_PASSWORD)}@`
-				: ''
-
-		const authsource = MONGOOSE.MONGO_AUTHSOURCE
-			? `authSource=${MONGOOSE.MONGO_AUTHSOURCE}`
-			: ''
-		const replicaset = MONGOOSE.MONGO_REPLICA_SET
-			? `replicaSet=${MONGOOSE.MONGO_REPLICA_SET}`
-			: ''
-
-		const connectionUri = `mongodb://${authstr}${MONGOOSE.MONGO_CONNECTION_URI}/${MONGOOSE.MONGO_DBNAME}?${replicaset}&${authsource}`
+		const connectionUri = MONGOOSE.MONGO_URI
 
 		connection.once('open', () => {
 			Log.info(`MongoDB connected to ${connectionUri}`)

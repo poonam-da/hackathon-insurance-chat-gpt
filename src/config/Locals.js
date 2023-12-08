@@ -18,6 +18,7 @@ export const middleware = {
     : []
 }
 export const MONGOOSE = {
+  MONGO_URI: process.env.MONGO_URI,
   MONGO_DBNAME: process.env.MONGO_DBNAME,
   MONGO_CONNECTION_URI: process.env.MONGO_CONNECTION_URI,
   MONGO_USERNAME: process.env.MONGO_USERNAME,
@@ -47,3 +48,6 @@ export const MEMBER_API = {
   USER_DETAILS: `${process.env.MEMBER_BASE_URL}/admin/get-member-details`
 }
 
+
+
+export const OPENAI_API_KEY = process.env.OPEN_AI_KEY

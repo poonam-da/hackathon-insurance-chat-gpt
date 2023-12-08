@@ -1,4 +1,4 @@
-import { dbInit, initializeApp, redisInit } from './app'
+import { dbInit, initializeApp } from './app'
 import { port, appURL } from './config'
 import { Log } from './libs'
 
@@ -7,7 +7,7 @@ let server
 (async () => {
   try {
     dbInit()
-    await redisInit()
+    // await redisInit()
     const app = initializeApp()
     server = app.listen(port, () => {
       Log.info(`Server listening at ${appURL}:${port}`)
