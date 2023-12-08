@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import { DB_FIELD_ENCRYPT, IV_FOR_ENCRYPTION } from '../config'
+import { DB_FIELD_ENCRYPT } from '../config'
 import { isArray, isObject } from '../utilities'
 
 const AES_256_GCM_KEY_BUFFER = Buffer.from(DB_FIELD_ENCRYPT.KEY)

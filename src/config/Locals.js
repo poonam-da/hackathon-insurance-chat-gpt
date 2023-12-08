@@ -40,6 +40,8 @@ export const DB_FIELD_ENCRYPT = {
   KEY: process.env.DB_FIELD_ENCRYPT_KEY
 }
 
+export const optExpiryTTL = process.env.OTP_EXPIRY_TTL
+
 export const MEMBER_API = {
   VALIDATE_TOKEN_API: `${process.env.MEMBER_BASE_URL}/auth/validate`,
   SEND_OTP: `${process.env.MEMBER_BASE_URL}/otp/send`,
