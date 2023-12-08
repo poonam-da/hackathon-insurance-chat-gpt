@@ -1,7 +1,10 @@
+import { ChatRouter } from './Chat'
 import { AuthRouter } from './Auth'
 
 const Routes = [
-    { path: '/auth', router: AuthRouter }
+    { path: '/chat', router: ChatRouter },
+    { path: '/auth', router: AuthRouter },
+    
 ]
 
 Routes.init = (app) => {
