@@ -1,4 +1,3 @@
-import { encryptDbFields, decryptDbFields, decryptDbFieldsV2 } from '../libs'
 import { isNumber } from '../utilities'
 
 
@@ -6,20 +5,20 @@ export const WrapperService = (model) => {
   const Services = {}
 
   Services.create = async objToSave => {
-    objToSave = encryptDbFields(objToSave)
+    objToSave = (objToSave)
     return JSON.parse(JSON.stringify(await model(objToSave).save()))
   }
 
   Services.createMany = async arrToSave => {
-    arrToSave = arrToSave.map(obj => encryptDbFields(obj))
+    arrToSave = arrToSave.map(obj => (obj))
     return JSON.parse(JSON.stringify(await model.insertMany(arrToSave)))
   }
 
   Services.getMany = async (criteria, projection, options = {}) => {
     options.lean = true
     options.virtuals = true
-    let response = await model.find(encryptDbFields(criteria), projection, options)
-    return response ? response.map(obj => decryptDbFields(obj)) : response
+    let response = await model.find((criteria), projection, options)
+    return response ? response.map(obj => (obj)) : response
   }
 
   Services.getManyV2 = async ({criteria, projection, options = {}, sortBy = {}, pageSize, pageNo = 1}) => {
@@ -31,8 +30,8 @@ export const WrapperService = (model) => {
       limit = pageSize
       skip = pageSize * (pageNo-1)
     }
-    let response = await model.find(encryptDbFields(criteria), projection, options).sort(sortBy).skip(skip).limit(limit)
-    return response ? response.map(obj => decryptDbFields(obj)) : response
+    let response = await model.find((criteria), projection, options).sort(sortBy).skip(skip).limit(limit)
+    return response ? response.map(obj => (obj)) : response
   }
 
   Services.getPopulatedMany = async (
@@ -44,19 +43,19 @@ export const WrapperService = (model) => {
     options.lean = true
     options.virtuals = true
     const response = await model
-      .find(encryptDbFields(criteria), projection, options)
+      .find((criteria), projection, options)
       .populate(populateQuery)
       .exec()
-    return response ? response.map(obj => decryptDbFields(obj)) : response
+    return response ? response.map(obj => (obj)) : response
   }
 
   Services.getOne = async (criteria, projection = {}) => {
-    let response = await model.findOne(encryptDbFields(criteria), projection).lean()
-    return response ? decryptDbFields(response) : response
+    let response = await model.findOne((criteria), projection).lean()
+    return response ? (response) : response
   }
 
   Services.updateOne = async (criteria, dataToUpdate, incrementField = {}, options = {}, dataToRemove= {}, dataToPush = {}) => {
-    dataToUpdate = encryptDbFields(dataToUpdate)
+    dataToUpdate = (dataToUpdate)
     const updateQuery = {
       $set: {
         ...dataToUpdate
@@ -80,12 +79,12 @@ export const WrapperService = (model) => {
       options.upsert = true
     }
 
-    const response = await model.findOneAndUpdate(encryptDbFields(criteria), updateQuery, options)
-    return response ? decryptDbFields(response) : response
+    const response = await model.findOneAndUpdate((criteria), updateQuery, options)
+    return response ? (response) : response
   }
 
   Services.updateOneV2 = async ({criteria, dataToUpdate, incrementField = {}, options = {}, dataToRemove= {}, dataToPush = {}, dataToPull = {}, dataToPushUnique = {}}) => {
-    dataToUpdate = encryptDbFields(dataToUpdate)
+    dataToUpdate = (dataToUpdate)
     const updateQuery = {
       $set: {
         ...dataToUpdate
@@ -115,12 +114,12 @@ export const WrapperService = (model) => {
       options.upsert = true
     }
 
-    const response = await model.findOneAndUpdate(encryptDbFields(criteria), updateQuery, options)
-    return response ? decryptDbFields(response) : response
+    const response = await model.findOneAndUpdate((criteria), updateQuery, options)
+    return response ? (response) : response
   }
 
   Services.updateMany = async (criteria, dataToUpdate, options = {}) => {
-    dataToUpdate = encryptDbFields(dataToUpdate)
+    dataToUpdate = (dataToUpdate)
     const updateQuery = {
       $set: {
         ...dataToUpdate
@@ -130,28 +129,28 @@ export const WrapperService = (model) => {
     options.new = true
     options.virtuals = true
     options.upsert = false
-    return await model.updateMany(encryptDbFields(criteria), updateQuery, options)
+    return await model.updateMany((criteria), updateQuery, options)
   }
 
   Services.deleteOne = async criteria => {
-    return await model.deleteOne(encryptDbFields(criteria))
+    return await model.deleteOne((criteria))
   }
 
   Services.findOneAndDelete = async criteria => {
-    return await model.findOneAndDelete(encryptDbFields(criteria))
+    return await model.findOneAndDelete((criteria))
   }
 
   Services.deleteMany = async criteria => {
-    return await model.deleteMany(encryptDbFields(criteria))
+    return await model.deleteMany((criteria))
   }
 
   Services.count = async criteria => {
-    return await model.countDocuments(encryptDbFields(criteria))
+    return await model.countDocuments((criteria))
   }
 
   Services.aggregate = async group => {
     let response = await model.aggregate(group)
-    return response ? response.map(obj => decryptDbFieldsV2(obj)) : response
+    return response
   }
 
   return Services

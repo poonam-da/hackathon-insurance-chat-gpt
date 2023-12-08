@@ -6,7 +6,6 @@ import { Log } from '../libs'
 export const redisClient = createClient({
 	port: REDIS.PORT,
 	host: REDIS.HOST,
-	password: REDIS.PASSWORD,
 	tls: {}
 })
 

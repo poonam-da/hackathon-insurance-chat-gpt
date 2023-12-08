@@ -130,6 +130,7 @@ export const initializeApp = () => {
   })
 
   app.use(async (req, res, next) => {
+    console.log(req.path)
     if (API_LIST_WITHOUT_TOKEN.includes(req.path)) return next()
     if (req?.headers?.accesstoken) {
       try {
