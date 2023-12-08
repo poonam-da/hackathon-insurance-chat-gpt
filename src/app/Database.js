@@ -3,12 +3,12 @@ import { createClient } from 'redis'
 import { MONGOOSE, REDIS } from '../config'
 import { Log } from '../libs'
 
-// export const redisClient = createClient({
-// 	port: REDIS.PORT,
-// 	host: REDIS.HOST,
-// 	password: REDIS.PASSWORD,
-// 	tls: {}
-// })
+export const redisClient = createClient({
+	port: REDIS.PORT,
+	host: REDIS.HOST,
+	password: REDIS.PASSWORD,
+	tls: {}
+})
 
 export const dbInit = () => {
 	try {

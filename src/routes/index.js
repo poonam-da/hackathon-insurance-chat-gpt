@@ -1,13 +1,16 @@
 import { ChatRouter } from './Chat'
+import { AuthRouter } from './Auth'
 
 const Routes = [
-    { path: '/chat', router: ChatRouter }
+    { path: '/chat', router: ChatRouter },
+    { path: '/auth', router: AuthRouter },
+    
 ]
 
 Routes.init = (app) => {
     try {
         Routes.forEach(route => {
-			app.use(['/dc', route.path].join(''), route.router)
+			app.use(['', route.path].join(''), route.router)
 		})
         app.get('/health-check', (req, res) => res.send('working'))
     } catch (error) {
@@ -15,5 +18,4 @@ Routes.init = (app) => {
         throw new Error(error)
     }
 }
-
 export { Routes }
