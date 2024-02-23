@@ -6,7 +6,7 @@ let server
 
 (async () => {
   try {
-    dbInit()
+    // dbInit()
     // await redisInit()
     const app = initializeApp()
     server = app.listen(port, () => {
