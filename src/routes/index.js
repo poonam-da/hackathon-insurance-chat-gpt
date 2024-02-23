@@ -1,11 +1,11 @@
 import { ChatRouter } from './Chat'
 import { AuthRouter } from './Auth'
-import { MemberRouter } from './Member'
+// import { MemberRouter } from './Member'
 
 const Routes = [
     { path: '/chat', router: ChatRouter },
     { path: '/auth', router: AuthRouter },
-    { path: '/member', router: MemberRouter },
+    // { path: '/member', router: MemberRouter },
     
 ]
 

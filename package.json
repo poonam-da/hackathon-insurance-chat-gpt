@@ -5,12 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/server.js",
-    "build": "rm -rf dist && babel . --out-dir dist --ignore node_modules && cp -r src/email-templates dist/src/. && cp package.json dist && cp swagger.json dist",
-    "prod": "node dist/src/server.js",
-    "test": "npx jest --watchAll --detectOpenHandles --coverage",
-    "lint": "eslint .",
-    "lint:fix": "npx eslint --fix . ",
-    "truepal-run": "node secrets_manager_truepal.js && node dist/src/server.js"
+    "build": "rm -rf dist && babel . --out-dir dist --ignore node_modules && cp package.json dist",
+    "prod": "node dist/src/server.js"
   },
   "author": "Team100",
   "license": "ISC",
